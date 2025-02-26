@@ -5,6 +5,7 @@ private/
 my_notes.txt
 git_push.txt
 ssh serv.txt
+.gitignore
 
 # Файлы IDE
 .vs/
@@ -87,3 +88,4 @@ Calculator.sln
 app.js
 eslint.config.js
 package.json
+.gitignore
