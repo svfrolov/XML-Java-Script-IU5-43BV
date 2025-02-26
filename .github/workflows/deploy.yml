@@ -3,8 +3,6 @@ name: Deploy to Server
 on:
   push:
     branches: [ main ]  # или master, в зависимости от вашей основной ветки
-    paths:
-      - 'xml/**'        # отслеживать изменения в папке xml
 
 jobs:
   deploy:
@@ -21,6 +19,43 @@ jobs:
           
       - name: Adding Known Hosts
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-          
-      - name: Deploy with rsync
-        run: rsync -avz --delete ./xml/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.REMOTE_PATH }}
+      
+      # Деплой lab1
+      - name: Deploy lab1
+        if: ${{ hashFiles('lab1/**') != '' }}
+        run: rsync -avz --delete ./lab1/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.REMOTE_PATH }}/lab1/
+      
+      # Деплой lab2
+      - name: Deploy lab2
+        if: ${{ hashFiles('lab2/**') != '' }}
+        run: rsync -avz --delete ./lab2/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.REMOTE_PATH }}/lab2/
+      
+      # Деплой lab3
+      - name: Deploy lab3
+        if: ${{ hashFiles('lab3/**') != '' }}
+        run: rsync -avz --delete ./lab3/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.REMOTE_PATH }}/lab3/
+      
+      # Деплой lab4
+      - name: Deploy lab4
+        if: ${{ hashFiles('lab4/**') != '' }}
+        run: rsync -avz --delete ./lab4/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.REMOTE_PATH }}/lab4/
+      
+      # Деплой lab5
+      - name: Deploy lab5
+        if: ${{ hashFiles('lab5/**') != '' }}
+        run: rsync -avz --delete ./lab5/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.REMOTE_PATH }}/lab5/
+      
+      # Деплой lab6
+      - name: Deploy lab6
+        if: ${{ hashFiles('lab6/**') != '' }}
+        run: rsync -avz --delete ./lab6/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.REMOTE_PATH }}/lab6/
+      
+      # Деплой lab7
+      - name: Deploy lab7
+        if: ${{ hashFiles('lab7/**') != '' }}
+        run: rsync -avz --delete ./lab7/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.REMOTE_PATH }}/lab7/
+      
+      # Деплой lab8
+      - name: Deploy lab8
+        if: ${{ hashFiles('lab8/**') != '' }}
+        run: rsync -avz --delete ./lab8/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.REMOTE_PATH }}/lab8/
