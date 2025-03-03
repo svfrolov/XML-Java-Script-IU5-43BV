@@ -54,8 +54,8 @@ h1 {
 
 #labFrame {
     width: 100%;
-    max-width: 800px; /* Немного увеличиваем максимальную ширину */
-    height: 700px;    /* Значительно увеличиваем высоту */
+    max-width: 900px; /* Немного увеличиваем максимальную ширину */
+    height: 800px;    /* Значительно увеличиваем высоту */
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
