@@ -1,10 +1,10 @@
-// Глобальные переменные
-let displayValue = '0';
-let firstOperand = null;
-let operator = null;
-let waitingForSecondOperand = false;
+// Переменные для хранения значений
+let displayValue = '0';  // что показано на экране
+let firstOperand = null;  // первое число
+let operator = null;  // знак операции (+, -, и т.д.)
+let waitingForSecondOperand = false;  // ждем ли второе число
 
-// Функция обновления дисплея
+// Функция для обновления экрана калькулятора
 function updateDisplay() {
     const display = document.getElementById('result');
     display.textContent = displayValue;
@@ -12,19 +12,20 @@ function updateDisplay() {
 
 // Функция для ввода цифр
 function inputDigit(digit) {
+    // Если ждем второе число, начинаем новый ввод
     if (waitingForSecondOperand) {
         displayValue = digit;
         waitingForSecondOperand = false;
     } else {
-        // Если на дисплее 0, заменяем его, иначе добавляем цифру
+        // Если на экране только 0, заменяем его, иначе добавляем цифру
         displayValue = displayValue === '0' ? digit : displayValue + digit;
     }
     updateDisplay();
 }
 
-// Функция для ввода десятичной точки
+// Функция для ввода точки (для десятичных чисел)
 function inputDecimal() {
-    // Если уже ожидаем второй операнд, начинаем с "0."
+    // Если ждем второе число, начинаем с "0."
     if (waitingForSecondOperand) {
         displayValue = '0.';
         waitingForSecondOperand = false;
@@ -39,17 +40,17 @@ function inputDecimal() {
     }
 }
 
-// Обработка операторов
+// Обработка операторов (+, -, *, /)
 function handleOperator(nextOperator) {
     const inputValue = parseFloat(displayValue);
     
-    // Если есть предыдущий оператор и мы ждем второй операнд
+    // Если уже есть оператор и мы ждем второе число
     if (operator && waitingForSecondOperand) {
         operator = nextOperator;
         return;
     }
     
-    // Если это первый операнд
+    // Если это первое число
     if (firstOperand === null) {
         firstOperand = inputValue;
     } else if (operator) {
@@ -81,7 +82,7 @@ function performCalculation() {
     return secondOperand;
 }
 
-// Сброс калькулятора
+// Сброс калькулятора (кнопка C)
 function resetCalculator() {
     displayValue = '0';
     firstOperand = null;
@@ -90,7 +91,7 @@ function resetCalculator() {
     updateDisplay();
 }
 
-// Изменение знака числа
+// Изменение знака числа (+/-)
 function changeSign() {
     displayValue = String(-parseFloat(displayValue));
     updateDisplay();
@@ -102,9 +103,9 @@ function calculatePercentage() {
     updateDisplay();
 }
 
-// Инициализация событий при загрузке страницы
+// Запускаем все функции после загрузки страницы
 document.addEventListener('DOMContentLoaded', () => {
-    // Обработчики для цифровых кнопок
+    // Кнопки с цифрами
     document.getElementById('btn_digit_0').addEventListener('click', () => inputDigit('0'));
     document.getElementById('btn_digit_1').addEventListener('click', () => inputDigit('1'));
     document.getElementById('btn_digit_2').addEventListener('click', () => inputDigit('2'));
@@ -117,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btn_digit_9').addEventListener('click', () => inputDigit('9'));
     document.getElementById('btn_digit_dot').addEventListener('click', inputDecimal);
     
-    // Обработчики для операторов
+    // Кнопки с операторами
     document.getElementById('btn_op_plus').addEventListener('click', () => handleOperator('+'));
     document.getElementById('btn_op_minus').addEventListener('click', () => handleOperator('-'));
     document.getElementById('btn_op_mult').addEventListener('click', () => handleOperator('x'));
@@ -128,16 +129,4 @@ document.addEventListener('DOMContentLoaded', () => {
             displayValue = String(result);
             firstOperand = result;
             operator = null;
-            waitingForSecondOperand = false;
-            updateDisplay();
-        }
-    });
-    
-    // Обработчики для специальных функций
-    document.getElementById('btn_op_clear').addEventListener('click', resetCalculator);
-    document.getElementById('btn_op_sign').addEventListener('click', changeSign);
-    document.getElementById('btn_op_percent').addEventListener('click', calculatePercentage);
-    
-    // Инициализация дисплея
-    updateDisplay();
-});
+            waitingForSecondOper
