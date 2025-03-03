@@ -102,20 +102,6 @@ function calculatePercentage() {
     updateDisplay();
 }
 
-// Функция для кнопки "луна" - расчет времени падения на Луне
-function calculateLunarFallTime() {
-    const mass = parseFloat(displayValue); // масса в кг (хотя для времени падения масса не важна)
-    const height = mass; // интерпретируем введенное число как высоту в метрах
-    const lunarGravity = 1.62; // ускорение свободного падения на Луне (м/с²)
-    
-    // Формула времени падения: t = √(2h/g)
-    const fallTime = Math.sqrt((2 * height) / lunarGravity);
-    
-    // Округляем до 2 знаков после запятой
-    displayValue = fallTime.toFixed(2);
-    updateDisplay();
-}
-
 // Инициализация событий при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
     // Обработчики для цифровых кнопок
@@ -151,9 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btn_op_clear').addEventListener('click', resetCalculator);
     document.getElementById('btn_op_sign').addEventListener('click', changeSign);
     document.getElementById('btn_op_percent').addEventListener('click', calculatePercentage);
-    
-    // Обработчик для кнопки "луна"
-    document.getElementById('btn_luna').addEventListener('click', calculateLunarFallTime);
     
     // Инициализация дисплея
     updateDisplay();
