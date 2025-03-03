@@ -4,7 +4,7 @@ credentials.json
 private/
 my_notes.txt
 git_push.txt
-ssh serv.txt
+
 
 # Файлы IDE
 .vs/
@@ -79,6 +79,16 @@ out/
 # XML-специфичные файлы
 *.xsd~
 *.dtd~
+# Добавьте эти строки в конец вашего файла .gitignore
+# Конкретные файлы для проекта lab1
+CHANGELOG.md
+Calculator.esproj
+Calculator.sln
+app.js
+eslint.config.js
+package.json
+
+
 # Добавьте эти строки в конец вашего файла .gitignore
 # Конкретные файлы для проекта lab1
 CHANGELOG.md
